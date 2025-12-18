@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon... | MINIあおいスタンプ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 大人リッチなカラーパレット */
+            --primary: #d48b96;       /* くすみピンク */
+            --accent: #c5a065;        /* シャンパンゴールド */
+            --text-main: #5a4a42;     /* 柔らかいブラウン */
+            --bg-start: #fdfbf7;
+            --bg-end: #fff0f0;
+            --card-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: transparent;
+            padding-bottom: 80px;
+        }
+
+        /* ヒーローエリア（画像表示） */
+        .hero-section {
+            position: relative;
+            padding: 20px;
+            background: #fff;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            box-shadow: 0 10px 30px rgba(212, 139, 150, 0.15);
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        
+        /* 予告用のバッジ */
+        .status-badge {
+            position: absolute;
+            top: 30px;
+            right: -60px;
+            background: var(--accent);
+            color: #fff;
+            padding: 5px 60px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+            letter-spacing: 0.1em;
+        }
+        
+        .hero-img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* テキストエリア共通 */
+        .content-area {
+            padding: 0 25px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+            line-height: 1.6;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+            margin: 15px auto 0;
+        }
+
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        /* プロフィールカード */
+        .profile-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 35px 25px;
+            margin: 40px 20px;
+            box-shadow: 0 15px 35px rgba(197, 160, 101, 0.15);
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            outline: 2px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        .profile-role {
+            font-size: 0.8rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .profile-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .btn-instagram {
+            display: inline-block;
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+            transition: transform 0.2s;
+        }
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+        }
+
+        /* スタンプ一覧 */
+        .gallery-section {
+            padding: 0 20px;
+            margin-top: 50px;
+        }
+        .stamp-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            opacity: 0.8;
+        }
+        .stamp-grid img {
+            width: 100%;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* フッター */
+        footer {
+            margin-top: 60px;
+            font-size: 0.75rem;
+            color: #998a83;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .fade-in { animation: fadeIn 1.5s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container fade-in">
+        
+        <header class="hero-section">
+            <div class="status-badge">COMING SOON</div>
+            <img src="img/hero.png" alt="MINIあおい爆誕" class="hero-img">
+        </header>
+
+        <section class="content-area">
+            <h2>いつも、あおいを応援してくださり<br>ありがとうございます！</h2>
+            <p>
+                インスタやThreads（スレッズ）で<br>
+                変顔をさらしていたら……<br>
+                <br>
+                いつのまにか、<br>
+                <strong style="color:var(--primary);">「ミニあおい」が爆誕</strong><br>
+                しておりました（笑）<br>
+                <br>
+                わたしが見ても、<br>
+                わたしにそっくり。<br>
+                <br>
+                表情も口癖も、そのまんまの<br>
+                わたしの分身です。<br>
+                ぜひ可愛がってあげてください！
+            </p>
+        </section>
+
+        <section class="profile-card">
+            <img src="img/profile.png" alt="Aoi Profile" class="profile-photo">
+            
+            <div class="profile-role">Therapist Aoi</div>
+            <div class="profile-name">ただいま、準備中です</div>
+            
+            <p style="font-size: 0.9rem; margin: 15px 0 25px;">
+                「現在、LINE公式さんの審査を受けています。<br>
+                リリースまで、もう少しだけお待ちください♡」
+            </p>
+
+            <a href="https://www.instagram.com/the_rapistao0315" target="_blank" class="btn-instagram">
+                販売告知をInstagramで待つ ▷
+            </a>
+        </section>
+
+        <section class="gallery-section">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span style="background:#fff; padding:5px 15px; border-radius:20px; color:var(--accent); font-size:0.85rem; letter-spacing:0.1em; border:1px solid var(--accent);">Preview Collection</span>
+            </div>
+            
+            <div class="stamp-grid">
+                <img src="img/stamp/1.png"><img src="img/stamp/2.png"><img src="img/stamp/3.png"><img src="img/stamp/4.png">
+                <img src="img/stamp/5.png"><img src="img/stamp/6.png"><img src="img/stamp/7.png"><img src="img/stamp/8.png">
+                <img src="img/stamp/9.png"><img src="img/stamp/10.png"><img src="img/stamp/11.png"><img src="img/stamp/12.png">
+                <img src="img/stamp/13.png"><img src="img/stamp/14.png"><img src="img/stamp/15.png"><img src="img/stamp/16.png">
+            </div>
+            <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 20px;">
+                ※開発中の画面です。
+            </p>
+        </section>
+
+        <footer>
+            <p>Producer: Hogushiyakida<br>© Therapist Aoi / Hogushiyakida</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
