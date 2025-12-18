@@ -17,6 +17,7 @@
             --card-bg: rgba(255, 255, 255, 0.85);
         }
 
+        /* 全体の設定 */
         body {
             font-family: 'Zen Maru Gothic', sans-serif;
             background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
@@ -25,13 +26,19 @@
             padding: 0;
             line-height: 1.8;
             letter-spacing: 0.05em;
+            /* 横スクロール防止 */
+            overflow-x: hidden; 
+            width: 100%;
         }
 
+        /* メインコンテナ（レスポンシブの要） */
         .container {
-            max-width: 600px;
+            width: 100%;
+            max-width: 600px; /* PCでもスマホ幅を維持して見やすく */
             margin: 0 auto;
             background-color: transparent;
             padding-bottom: 80px;
+            box-sizing: border-box; /* パディングを含めた幅計算 */
         }
 
         /* ヒーローエリア */
@@ -42,7 +49,7 @@
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
             box-shadow: 0 10px 30px rgba(212, 139, 150, 0.15);
-            margin-bottom: 0; /* 下のマージンをリセット */
+            margin-bottom: 0;
             overflow: hidden;
         }
         
@@ -59,34 +66,31 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             z-index: 10;
             letter-spacing: 0.1em;
+            pointer-events: none; /* クリックの邪魔をしない */
         }
         
         .hero-img {
             width: 100%;
+            height: auto;
             border-radius: 20px;
             display: block;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        /* ▼▼▼ 音楽プレーヤー（区切りスタイル） ▼▼▼ */
+        /* 音楽プレーヤーエリア */
         .audio-player-area {
             text-align: center;
-            /* 上下に程よい距離を空ける */
             margin: 30px auto 40px;
             position: relative;
             z-index: 5;
-            width: 90%;
+            width: 90%; /* スマホで端が切れないように */
             max-width: 500px;
-            
-            /* 清潔感のある白ベースのデザイン */
             background: #fff;
             padding: 15px 20px;
             border-radius: 50px;
-            
-            /* ふわっと浮かせる影 */
             box-shadow: 0 5px 20px rgba(212, 139, 150, 0.2);
-            /* テーマカラー（くすみピンク）の枠線 */
             border: 2px solid var(--primary);
+            box-sizing: border-box;
         }
         
         .audio-label {
@@ -102,15 +106,15 @@
             border-radius: 20px;
             outline: none;
         }
-        /* ▲▲▲ ここまで ▲▲▲ */
 
+        /* コンテンツエリア */
         .content-area {
             padding: 0 25px;
             text-align: center;
         }
 
         h2 {
-            font-size: 1.2rem;
+            font-size: clamp(1.1rem, 4vw, 1.3rem); /* 画面幅に合わせて文字サイズを自動調整 */
             color: var(--primary);
             margin-bottom: 25px;
             position: relative;
@@ -129,6 +133,7 @@
         p {
             font-size: 0.95rem;
             margin-bottom: 30px;
+            word-wrap: break-word; /* 長い文字の折り返し */
         }
 
         /* プロフィールカード */
@@ -181,6 +186,11 @@
             font-size: 0.9rem;
             box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
             transition: transform 0.2s;
+            /* ボタンのテキスト折り返し防止 */
+            white-space: nowrap; 
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .btn-instagram:hover {
             transform: translateY(-2px);
@@ -197,19 +207,40 @@
             gap: 12px;
             opacity: 0.8;
         }
+        
+        /* スマホ対応のメディアクエリ（画面幅400px以下） */
+        @media screen and (max-width: 400px) {
+            .stamp-grid {
+                gap: 8px; /* 隙間を詰める */
+            }
+            .content-area {
+                padding: 0 15px; /* 余白を詰める */
+            }
+            .profile-card {
+                padding: 25px 15px;
+                margin: 40px 15px;
+            }
+            h2 {
+                font-size: 1.1rem;
+            }
+        }
+
         .stamp-grid img {
             width: 100%;
+            height: auto;
             border-radius: 12px;
             background-color: #fff;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             cursor: pointer;
             transition: transform 0.2s;
+            /* タップ時のハイライトを消す（スマホ用） */
+            -webkit-tap-highlight-color: transparent;
         }
         .stamp-grid img:hover {
             transform: scale(1.05);
         }
 
-        /* リッチカード仕様の拡大モーダル */
+        /* 拡大モーダル（レスポンシブ対応） */
         .modal {
             display: none;
             position: fixed;
@@ -224,6 +255,7 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             padding: 20px;
+            box-sizing: border-box;
         }
         .modal.active {
             display: flex;
@@ -232,14 +264,15 @@
         
         .modal-content {
             position: relative;
-            max-width: 90%;
-            width: 400px;
+            /* 画面幅の90% か 最大400px か、小さい方を選ぶ */
+            width: min(90%, 400px); 
             background-color: #fff;
             border: 4px solid var(--accent);
             border-radius: 25px;
             padding: 25px;
             box-shadow: 0 0 50px rgba(197, 160, 101, 0.6);
             text-align: center;
+            box-sizing: border-box;
         }
 
         .modal-content img {
@@ -265,6 +298,8 @@
             align-items: center;
             font-family: sans-serif;
             transition: transform 0.2s;
+            /* タップ領域確保 */
+            touch-action: manipulation;
         }
         .close-btn:hover {
             transform: scale(1.1);
@@ -308,6 +343,7 @@
             <span class="audio-label">♪ テーマソング：ミニあおい爆誕</span>
             <audio controls src="img/theme_song.mp3"></audio>
         </div>
+
         <section class="content-area">
             <h2>いつも、あおいを応援してくださり<br>ありがとうございます！</h2>
             <p>
